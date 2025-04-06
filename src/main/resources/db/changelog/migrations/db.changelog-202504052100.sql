@@ -12,4 +12,4 @@ CREATE TABLE BOARDS_COLUMNS (
     CONSTRAINT uk_id_order  UNIQUE KEY unique_board_id_order (board_id, `order`)
 ) ENGINE=InnoDB;
 
---rollback DROP TABLE BOARDS_COLUMNS
+--rollback DROP TABLE BOARDS_COLUMNS;

@@ -1,14 +1,129 @@
 Iniciando a migra豫o...
-abr. 06, 2025 10:11:11 AM liquibase.command
+abr. 06, 2025 11:43:39 AM liquibase.changelog
+INFORMA합ES: Reading resource: db/changelog/migrations/db.changelog-202504052041.sql
+abr. 06, 2025 11:43:39 AM liquibase.changelog
+INFORMA합ES: Reading resource: db/changelog/migrations/db.changelog-202504052100.sql
+abr. 06, 2025 11:43:39 AM liquibase.changelog
+INFORMA합ES: Reading resource: db/changelog/migrations/db.changelog-202504052130.sql
+abr. 06, 2025 11:43:39 AM liquibase.changelog
+INFORMA합ES: Reading resource: db/changelog/migrations/db.changelog-202504052150.sql
+abr. 06, 2025 11:43:39 AM liquibase.changelog
+INFORMA합ES: Reading from board.databasechangelog
+abr. 06, 2025 11:43:40 AM liquibase.lockservice
+INFORMA합ES: Successfully acquired change log lock
+abr. 06, 2025 11:43:40 AM liquibase.command
+INFORMA합ES: Using deploymentId: 3950620082
+abr. 06, 2025 11:43:40 AM liquibase.changelog
+INFORMA합ES: Reading from board.databasechangelog
+Running Changeset: db/changelog/migrations/db.changelog-202504052130.sql::202408191938::junior
+abr. 06, 2025 11:43:40 AM liquibase.changelog
+GRAVE: ChangeSet db/changelog/migrations/db.changelog-202504052130.sql::202408191938::junior encountered an exception.
+liquibase.exception.DatabaseException: Table 'cards' already exists [Failed SQL: (1050) CREATE TABLE CARDS(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    board_column_id BIGINT NOT NULL,
+    CONSTRAINT boards_columns__cards_fk FOREIGN KEY (board_column_id) REFERENCES BOARDS_COLUMNS(id) ON DELETE CASCADE
+) ENGINE=InnoDB]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:497)
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:83)
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:185)
+	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:141)
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1189)
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:776)
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:126)
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:70)
+	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:131)
+	at liquibase.Scope.lambda$child$0(Scope.java:191)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:190)
+	at liquibase.Scope.child(Scope.java:169)
+	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:120)
+	at liquibase.Scope.lambda$child$0(Scope.java:191)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:190)
+	at liquibase.Scope.child(Scope.java:169)
+	at liquibase.Scope.child(Scope.java:257)
+	at liquibase.Scope.child(Scope.java:261)
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:89)
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$0(AbstractUpdateCommandStep.java:114)
+	at liquibase.Scope.lambda$child$0(Scope.java:191)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:190)
+	at liquibase.Scope.child(Scope.java:169)
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:112)
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:105)
+	at liquibase.command.CommandScope.execute(CommandScope.java:220)
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216)
+	at liquibase.Scope.lambda$child$0(Scope.java:191)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:190)
+	at liquibase.Scope.child(Scope.java:169)
+	at liquibase.Liquibase.runInScope(Liquibase.java:1329)
+	at liquibase.Liquibase.update(Liquibase.java:205)
+	at liquibase.Liquibase.update(Liquibase.java:188)
+	at liquibase.Liquibase.update(Liquibase.java:175)
+	at liquibase.Liquibase.update(Liquibase.java:155)
+	at com.boardtarefas.BoardTarefas.persistence.migration.MigrationStrategy.executeMigration(MigrationStrategy.java:46)
+	at com.boardtarefas.BoardTarefas.Main.main(Main.java:15)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'cards' already exists
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:837)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:685)
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:491)
+	... 40 more
+
+
+UPDATE SUMMARY
+Run:                          0
+Previously run:               3
+Filtered out:                 0
+-------------------------------
+Total change sets:            4
+
+abr. 06, 2025 11:43:40 AM liquibase.util
+INFORMA합ES: UPDATE SUMMARY
+abr. 06, 2025 11:43:40 AM liquibase.util
+INFORMA합ES: Run:                          0
+abr. 06, 2025 11:43:40 AM liquibase.util
+INFORMA합ES: Previously run:               3
+abr. 06, 2025 11:43:40 AM liquibase.util
+INFORMA합ES: Filtered out:                 0
+abr. 06, 2025 11:43:40 AM liquibase.util
+INFORMA합ES: -------------------------------
+abr. 06, 2025 11:43:40 AM liquibase.util
+INFORMA합ES: Total change sets:            4
+abr. 06, 2025 11:43:40 AM liquibase.util
+INFORMA합ES: Update summary generated
+abr. 06, 2025 11:43:40 AM liquibase.command
+INFORMA합ES: Update command encountered an exception.
+abr. 06, 2025 11:43:40 AM liquibase.lockservice
+INFORMA합ES: Successfully released change log lock
+abr. 06, 2025 11:43:40 AM liquibase.command
 INFORMA합ES: Logging exception.
 ERROR: Exception Details
-ERROR: Exception Primary Class:  SetupException
-ERROR: Exception Primary Reason:  No path attribute for includeAll
-ERROR: Exception Primary Source:  4.29.2
-abr. 06, 2025 10:11:11 AM liquibase.command
+ERROR: Exception Primary Class:  SQLSyntaxErrorException
+ERROR: Exception Primary Reason:  Table 'cards' already exists
+ERROR: Exception Primary Source:  MySQL 8.0.41
+abr. 06, 2025 11:43:40 AM liquibase.command
 INFORMA합ES: Command execution complete
-Erro ao executar a migra豫o liquibase.exception.ChangeLogParseException: Error parsing db/changelog/db.changelog-master.yml : No path attribute for includeAll
-liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogParseException: Error parsing db/changelog/db.changelog-master.yml : No path attribute for includeAll
+Erro ao executar a migra豫o liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/migrations/db.changelog-202504052130.sql::202408191938::junior:
+     Reason: liquibase.exception.DatabaseException: Table 'cards' already exists [Failed SQL: (1050) CREATE TABLE CARDS(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    board_column_id BIGINT NOT NULL,
+    CONSTRAINT boards_columns__cards_fk FOREIGN KEY (board_column_id) REFERENCES BOARDS_COLUMNS(id) ON DELETE CASCADE
+) ENGINE=InnoDB]
+liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/migrations/db.changelog-202504052130.sql::202408191938::junior:
+     Reason: liquibase.exception.DatabaseException: Table 'cards' already exists [Failed SQL: (1050) CREATE TABLE CARDS(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    board_column_id BIGINT NOT NULL,
+    CONSTRAINT boards_columns__cards_fk FOREIGN KEY (board_column_id) REFERENCES BOARDS_COLUMNS(id) ON DELETE CASCADE
+) ENGINE=InnoDB]
 	at liquibase.command.CommandScope.execute(CommandScope.java:258)
 	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216)
 	at liquibase.Scope.lambda$child$0(Scope.java:191)
@@ -22,19 +137,67 @@ liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogPars
 	at liquibase.Liquibase.update(Liquibase.java:155)
 	at com.boardtarefas.BoardTarefas.persistence.migration.MigrationStrategy.executeMigration(MigrationStrategy.java:46)
 	at com.boardtarefas.BoardTarefas.Main.main(Main.java:15)
-Caused by: liquibase.exception.ChangeLogParseException: Error parsing db/changelog/db.changelog-master.yml : No path attribute for includeAll
-	at liquibase.parser.core.yaml.YamlChangeLogParser.parse(YamlChangeLogParser.java:98)
-	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.lambda$getDatabaseChangeLog$0(DatabaseChangelogCommandStep.java:129)
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/migrations/db.changelog-202504052130.sql::202408191938::junior:
+     Reason: liquibase.exception.DatabaseException: Table 'cards' already exists [Failed SQL: (1050) CREATE TABLE CARDS(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    board_column_id BIGINT NOT NULL,
+    CONSTRAINT boards_columns__cards_fk FOREIGN KEY (board_column_id) REFERENCES BOARDS_COLUMNS(id) ON DELETE CASCADE
+) ENGINE=InnoDB]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:148)
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$0(AbstractUpdateCommandStep.java:114)
+	at liquibase.Scope.lambda$child$0(Scope.java:191)
 	at liquibase.Scope.child(Scope.java:200)
-	at liquibase.Scope.child(Scope.java:176)
-	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.getDatabaseChangeLog(DatabaseChangelogCommandStep.java:128)
-	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.run(DatabaseChangelogCommandStep.java:87)
+	at liquibase.Scope.child(Scope.java:190)
+	at liquibase.Scope.child(Scope.java:169)
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:112)
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:105)
 	at liquibase.command.CommandScope.execute(CommandScope.java:220)
 	... 12 more
-Caused by: liquibase.exception.SetupException: No path attribute for includeAll
-	at liquibase.changelog.DatabaseChangeLog.includeAll(DatabaseChangeLog.java:794)
-	at liquibase.changelog.DatabaseChangeLog.handleChildNodeHelper(DatabaseChangeLog.java:545)
-	at liquibase.changelog.DatabaseChangeLog.handleChildNode(DatabaseChangeLog.java:466)
-	at liquibase.changelog.DatabaseChangeLog.load(DatabaseChangeLog.java:433)
-	at liquibase.parser.core.yaml.YamlChangeLogParser.parse(YamlChangeLogParser.java:92)
-	... 18 more
+Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/migrations/db.changelog-202504052130.sql::202408191938::junior:
+     Reason: liquibase.exception.DatabaseException: Table 'cards' already exists [Failed SQL: (1050) CREATE TABLE CARDS(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    board_column_id BIGINT NOT NULL,
+    CONSTRAINT boards_columns__cards_fk FOREIGN KEY (board_column_id) REFERENCES BOARDS_COLUMNS(id) ON DELETE CASCADE
+) ENGINE=InnoDB]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:820)
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:126)
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:70)
+	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:131)
+	at liquibase.Scope.lambda$child$0(Scope.java:191)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:190)
+	at liquibase.Scope.child(Scope.java:169)
+	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:120)
+	at liquibase.Scope.lambda$child$0(Scope.java:191)
+	at liquibase.Scope.child(Scope.java:200)
+	at liquibase.Scope.child(Scope.java:190)
+	at liquibase.Scope.child(Scope.java:169)
+	at liquibase.Scope.child(Scope.java:257)
+	at liquibase.Scope.child(Scope.java:261)
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:89)
+	... 20 more
+Caused by: liquibase.exception.DatabaseException: Table 'cards' already exists [Failed SQL: (1050) CREATE TABLE CARDS(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    board_column_id BIGINT NOT NULL,
+    CONSTRAINT boards_columns__cards_fk FOREIGN KEY (board_column_id) REFERENCES BOARDS_COLUMNS(id) ON DELETE CASCADE
+) ENGINE=InnoDB]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:497)
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:83)
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:185)
+	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:141)
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1189)
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:776)
+	... 35 more
+Caused by: java.sql.SQLSyntaxErrorException: Table 'cards' already exists
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:837)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:685)
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:491)
+	... 40 more
