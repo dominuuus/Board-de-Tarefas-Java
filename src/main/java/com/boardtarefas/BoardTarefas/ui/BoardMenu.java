@@ -19,26 +19,36 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class BoardMenu {
 
-    private final Scanner scanner = new Scanner(System.in).useDelimiter("/n");
+    private final Scanner scanner = new Scanner(System.in).useDelimiter("\n");
 
     private final BoardEntity entity;
 
     public void execute() {
         try {
-            System.out.printf("Bem-vindo ao Board de Tarefas %s! Escolha uma opção\n", entity.getId());
+            System.out.printf("Bem vindo ao board %s, selecione a operação desejada\n", entity.getId());
             var option = -1;
             while (option != 9) {
-                System.out.println("1. Criar card");
-                System.out.println("2. Mover card");
-                System.out.println("3. Bloquear card");
-                System.out.println("4. Desbloquear card");
-                System.out.println("5. Excluir card");
-                System.out.println("6. Ver board");
-                System.out.println("7. Ver coluna com cards");
-                System.out.println("8. Ver card");
-                System.out.println("9. Voltar ao menu anterior");
-                System.out.println("10. Sair");
-                option = scanner.nextInt();
+                System.out.println("1 - Criar um card");
+                System.out.println("2 - Mover um card");
+                System.out.println("3 - Bloquear um card");
+                System.out.println("4 - Desbloquear um card");
+                System.out.println("5 - Cancelar um card");
+                System.out.println("6 - Ver board");
+                System.out.println("7 - Ver coluna com cards");
+                System.out.println("8 - Ver card");
+                System.out.println("9 - Voltar para o menu anterior um card");
+                System.out.println("10 - Sair");
+                
+                if (scanner.hasNext()) {
+                    String input = scanner.nextLine().trim(); // Lê a linha inteira e remove espaços
+                    try {
+                        option = Integer.parseInt(input); // Converte a entrada para inteiro
+                    } catch (NumberFormatException e) {
+                        System.out.println("Por favor, insira um número válido.");
+                        continue;
+                    }
+                }
+                
                 switch (option) {
                     case 1 -> createCard();
                     case 2 -> moveCard();
@@ -48,32 +58,41 @@ public class BoardMenu {
                     case 6 -> showBoard();
                     case 7 -> showColumnWithCards();
                     case 8 -> showCard();
-                    case 9 -> System.out.println("Voltando ao menu anterior...");
+                    case 9 -> System.out.println("Voltando para o menu anterior");
                     case 10 -> System.exit(0);
-                    default -> System.out.println("Opção inválida. Tente novamente.");
+                    default -> System.out.println("Opção inválida, informe uma opção do menu");
                 }
             }
-        } catch (SQLException ex) {
+        }catch (SQLException ex){
             ex.printStackTrace();
             System.exit(0);
         }
     }
 
-    private void createCard() throws SQLException {
+    private void createCard() throws SQLException{
         var card = new CardEntity();
-        System.out.println("Informe o título do Card");
+        System.out.println("Informe o título do card");
         card.setTitle(scanner.next());
-        System.out.println("Informe a descrição do Card");
+        System.out.println("Informe a descrição do card");
         card.setDescription(scanner.next());
         card.setBoardColumn(entity.getInitialColumn());
-        try(var connection = getConnection()) {
+        try(var connection = getConnection()){
             new CardService(connection).create(card);
         }
     }
 
     private void moveCard() throws SQLException {
         System.out.println("Informe o ID do Card a ser movido");
-        var cardId = scanner.nextLong();
+        String input = scanner.nextLine().trim();
+        long cardId;
+
+        try {
+            cardId = Long.parseLong(input); // Converte a entrada para long
+        } catch (NumberFormatException e) {
+            System.out.println("Por favor, insira um ID de card válido (número inteiro).");
+            return; // Sai do método se a entrada for inválida
+        }
+
         var boardColumnsInfo = entity.getBoardColumns().stream()
                 .map(bc -> new BoardColumnInfoDTO(bc.getId(), bc.getOrder(), bc.getKind()))
                 .toList();

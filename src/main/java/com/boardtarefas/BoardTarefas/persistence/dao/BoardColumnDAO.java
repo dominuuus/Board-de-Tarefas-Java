@@ -26,10 +26,10 @@ public class BoardColumnDAO {
         var sql = "INSERT INTO BOARD_COLUMNS (name, `order`, kind, board_id) VALUES (?, ?, ?, ?);";
         try(var statement = connection.prepareStatement(sql)) {
             var i = 1;
-            statement.setString(i++, entity.getName());
-            statement.setInt(i++, entity.getOrder());
-            statement.setString(i++, entity.getKind().name());
-            statement.setLong(i++, entity.getBoard().getId());
+            statement.setString(i ++, entity.getName());
+            statement.setInt(i ++, entity.getOrder());
+            statement.setString(i ++, entity.getKind().name());
+            statement.setLong(i ++, entity.getBoard().getId());
             statement.executeUpdate();
             if(statement instanceof StatementImpl impl) {
                 entity.setId(impl.getLastInsertID());
@@ -38,10 +38,10 @@ public class BoardColumnDAO {
         }
     }
 
-    public List<BoardColumnEntity> findBoardId(Long boardId) throws SQLException{
-        var sql = "DELETE FROM BOARD_COLUMNS WHERE board_id = ? ORDER BY `order` ASC;";
+    public List<BoardColumnEntity> findBoardId(final Long boardId) throws SQLException{
+        var sql = "SELECT id, name, `order`, kind FROM BOARD_COLUMNS WHERE board_id = ? ORDER BY `order`;";
         List<BoardColumnEntity> list = new ArrayList<>();
-
+        
         try(var statement = connection.prepareStatement(sql)) {
             statement.setLong(1, boardId);
             statement.executeQuery();
