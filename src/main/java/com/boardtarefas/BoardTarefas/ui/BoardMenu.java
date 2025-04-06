@@ -10,6 +10,7 @@ import com.boardtarefas.BoardTarefas.persistence.entity.BoardEntity;
 import com.boardtarefas.BoardTarefas.persistence.entity.CardEntity;
 import com.boardtarefas.BoardTarefas.service.BoardColumnQueryService;
 import com.boardtarefas.BoardTarefas.service.BoardQueryService;
+import com.boardtarefas.BoardTarefas.service.CardQueryService;
 import com.boardtarefas.BoardTarefas.service.CardService;
 import com.boardtarefas.BoardTarefas.dto.BoardColumnInfoDTO;
 
@@ -77,19 +78,13 @@ public class BoardMenu {
                 .map(bc -> new BoardColumnInfoDTO(bc.getId(), bc.getOrder(), bc.getKind()))
                 .toList();
         try(var connection = getConnection()) {
-            new CardService(connection).moveCard(cardId, boardColumnsInfo);
-        } catch (RuntimeException e){
+            new CardService(connection).moveToNextColumn(cardId, boardColumnsInfo);
+        }    catch (RuntimeException e){
             System.out.println(e.getMessage());
-        }
-        System.out.println("Informe o ID da coluna de destino");
-        var columnId = scanner.nextLong();
-        try(var connection = getConnection()) {
-            new CardService(connection).moveCard(cardId, columnId);
-        }
-     
+        }    
     }
 
-    private void blockCard() throws SQLException{
+    private void blockCard() throws SQLException {
         System.out.println("Informe o ID do Card a ser bloqueado");
         var cardId = scanner.nextLong();
         System.out.println("Informe o motivo do bloqueio");
@@ -97,10 +92,11 @@ public class BoardMenu {
         var boardColumnsInfo = entity.getBoardColumns().stream()
                 .map(bc -> new BoardColumnInfoDTO(bc.getId(), bc.getOrder(), bc.getKind()))
                 .toList();
-        try(var connection = getConnection()) {
+        try(var connection = getConnection()){
             new CardService(connection).block(cardId, reason, boardColumnsInfo);
-        } catch (RuntimeException e){
-            System.out.println(e.getMessage());
+        } catch (RuntimeException ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
     private void unblockCard() throws SQLException {
@@ -118,7 +114,7 @@ public class BoardMenu {
     }
 
     private void cancelCard() throws SQLException{
-        System.out.println("Informe o ID do Card a ser excluído");
+        System.out.println("Informe o ID do Card a ser cancelado");
         var cardId = scanner.nextLong();
         var cancelColumn = entity.getCancelColumn();
         var boardColumnsInfo = entity.getBoardColumns().stream()
@@ -165,20 +161,20 @@ public class BoardMenu {
 
     private void showCard() throws SQLException {
         System.out.println("Informe o ID do Card a ser exibido");
-        var selectedCard = scanner.nextLong();
+        var selectedCardId = scanner.nextLong();
         try(var connection = getConnection()) {
-            new CardQueryService(connection).findById(selectedCard)
+            new CardQueryService(connection).findById(selectedCardId)
                 .ifPresentOrElse(
                     c -> {
                         System.out.printf("Card [%s] - %s\n Descrição: %s", c.id(), c.title());
                         System.out.printf("Descrição: %s", c.description());
                         System.out.printf(c.blocked() ?
                             "Card bloqueado em %s, motivo: %s\n" : "Card desbloqueado em %s, motivo: %s\n",
-                            c.blockedAt(), c.blockReason());
-                        System.out.printf("Já foi bloqueado: %s vezes\n", c.blocksAmount());
+                            c.blockeAt(), c.blockReason());
+                        System.out.printf("Já foi bloqueado: %s vezes\n", c.blockAmount());
                         System.out.printf("Está no momento na coluna %s - %s\n", c.columnId(), c.columnName());
                     },
-                    () -> System.out.println("Card não encontrado com o id %s\n", selectedCard));
+                    () -> System.out.printf("Card não encontrado com o id %s\n", selectedCardId));
         } catch (RuntimeException e){
             System.out.println(e.getMessage());
         }
@@ -186,5 +182,4 @@ public class BoardMenu {
     }
 
 
-}
 }
