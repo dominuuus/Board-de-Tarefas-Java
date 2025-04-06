@@ -8,7 +8,6 @@ import com.boardtarefas.BoardTarefas.persistence.entity.BoardEntity;
 import com.mysql.cj.jdbc.StatementImpl;
 
 import lombok.AllArgsConstructor;
-import lombok.experimental.var;
 
 @AllArgsConstructor
 public class BoardDAO {

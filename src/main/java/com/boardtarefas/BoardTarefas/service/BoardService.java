@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 public class BoardService {
     private final Connection connection;
 
-    public BoardEntity insert (final BoardEntity entity) throws Exception {
+    public BoardEntity insert(final BoardEntity entity) throws SQLException {
         var dao = new BoardDAO(connection);
         var boardColumnDAO = new BoardColumnDAO(connection);
 
@@ -27,13 +27,13 @@ public class BoardService {
                 boardColumnDAO.insert(column);
             }
             connection.commit();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             connection.rollback();
             throw e;
     } return entity;
         }
 
-    public boolean delete(final Long id) throws Exception {
+    public boolean delete(final Long id) throws SQLException {
         var dao = new BoardDAO(connection);
         try {
             if(!dao.exists(id)) {

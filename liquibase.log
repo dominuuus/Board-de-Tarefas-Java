@@ -1,12 +1,10 @@
 Iniciando a migração...
-abr. 06, 2025 12:48:18 AM liquibase.command
-INFORMAÇÕES: Logging exception.
+2025-04-06T00:54:46.400-03:00  INFO 23972 --- [Board-de-Tarefas-com-Java] [  restartedMain] liquibase.command                        : Logging exception.
 ERROR: Exception Details
 ERROR: Exception Primary Class:  SetupException
 ERROR: Exception Primary Reason:  No path attribute for includeAll
 ERROR: Exception Primary Source:  4.29.2
-abr. 06, 2025 12:48:18 AM liquibase.command
-INFORMAÇÕES: Command execution complete
+2025-04-06T00:54:46.402-03:00  INFO 23972 --- [Board-de-Tarefas-com-Java] [  restartedMain] liquibase.command                        : Command execution complete
 Erro ao executar a migração liquibase.exception.ChangeLogParseException: Error parsing /db/changelog/db.changelog-master.yml : No path attribute for includeAll
 liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogParseException: Error parsing /db/changelog/db.changelog-master.yml : No path attribute for includeAll
 	at liquibase.command.CommandScope.execute(CommandScope.java:258)
@@ -21,7 +19,12 @@ liquibase.exception.CommandExecutionException: liquibase.exception.ChangeLogPars
 	at liquibase.Liquibase.update(Liquibase.java:175)
 	at liquibase.Liquibase.update(Liquibase.java:155)
 	at com.boardtarefas.BoardTarefas.persistence.migration.MigrationStrategy.executeMigration(MigrationStrategy.java:39)
-	at com.boardtarefas.BoardTarefas.Main.main(Main.java:13)
+	at com.boardtarefas.BoardTarefas.BoardDeTarefasComJavaApplication.main(BoardDeTarefasComJavaApplication.java:20)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
 Caused by: liquibase.exception.ChangeLogParseException: Error parsing /db/changelog/db.changelog-master.yml : No path attribute for includeAll
 	at liquibase.parser.core.yaml.YamlChangeLogParser.parse(YamlChangeLogParser.java:98)
 	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.lambda$getDatabaseChangeLog$0(DatabaseChangelogCommandStep.java:129)
@@ -30,11 +33,11 @@ Caused by: liquibase.exception.ChangeLogParseException: Error parsing /db/change
 	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.getDatabaseChangeLog(DatabaseChangelogCommandStep.java:128)
 	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.run(DatabaseChangelogCommandStep.java:87)
 	at liquibase.command.CommandScope.execute(CommandScope.java:220)
-	... 12 more
+	... 17 more
 Caused by: liquibase.exception.SetupException: No path attribute for includeAll
 	at liquibase.changelog.DatabaseChangeLog.includeAll(DatabaseChangeLog.java:794)
 	at liquibase.changelog.DatabaseChangeLog.handleChildNodeHelper(DatabaseChangeLog.java:545)
 	at liquibase.changelog.DatabaseChangeLog.handleChildNode(DatabaseChangeLog.java:466)
 	at liquibase.changelog.DatabaseChangeLog.load(DatabaseChangeLog.java:433)
 	at liquibase.parser.core.yaml.YamlChangeLogParser.parse(YamlChangeLogParser.java:92)
-	... 18 more
+	... 23 more

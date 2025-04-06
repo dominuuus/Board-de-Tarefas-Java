@@ -17,7 +17,7 @@ public class MainMenu {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public void execute() {
+    public void execute() throws SQLException {
         System.out.println("Bem-vindo ao Board de Tarefas! Escolha uma opção");
         var option = -1;
         while (true) {
@@ -36,7 +36,7 @@ public class MainMenu {
         }
     }
 
-    private Object createBoard() {
+    private void createBoard() throws SQLException {
         var entity = new BoardEntity();
         System.out.println("Informe o nome do Board:");
         entity.setName(scanner.next());
@@ -48,7 +48,7 @@ public class MainMenu {
 
         System.out.println("Informe o nome da coluna inicial do Board: ");
         var initialColumnName = scanner.next();
-        var initialColumn = createColumn(initialColumnName, BoardColumnKindEnum.INITIAL, 0)
+        var initialColumn = createColumn(initialColumnName, BoardColumnKindEnum.INITIAL, 0);
         columns.add(initialColumn);
 
         for (int i = 0; i < additionalColumns; i++) {
@@ -75,7 +75,7 @@ public class MainMenu {
         }
     }
 
-    private Object selectBoard() throws SQLException {
+    private void selectBoard() throws SQLException {
         System.out.println("Informe o id do Board que deseja selecionar: ");
         var id = scanner.nextLong();
         try (var connection = getConnection()) {
@@ -89,12 +89,12 @@ public class MainMenu {
 
     }
 
-    private void deleteBoard() {
+    private void deleteBoard() throws SQLException {
         System.out.println("Informe o id do Board que deseja excluir: ");
         var id = scanner.nextLong();
         try(var connection = getConnection()) {
-            var service new BoardService(connection);
-            if(service.delete(id)) {
+            var service = new BoardService(connection);
+            if (service.delete(id)) {
                 System.out.printf("Board %s excluído com sucesso \n", id);
             } else {
                 System.out.printf("Erro ao excluir o Board %s :", id, "/n Verifique se o ID está correto.");
