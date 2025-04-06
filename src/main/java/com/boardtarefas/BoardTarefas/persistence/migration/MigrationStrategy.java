@@ -18,6 +18,13 @@ import static com.boardtarefas.BoardTarefas.persistence.config.ConnectionConfig.
 public class MigrationStrategy {
 
     private final Connection connection;
+    /**
+     * Método responsável por executar a migração do banco de dados utilizando o Liquibase.
+     * Ele cria um arquivo de log para registrar as mensagens de saída e erro durante o processo.
+     * 
+     * @throws SQLException se ocorrer um erro ao conectar ao banco de dados
+     * @throws LiquibaseException se ocorrer um erro durante a migração
+     */
 
     public void executeMigration() {
         var originalOut = System.out;
@@ -32,7 +39,7 @@ public class MigrationStrategy {
                     ) {
                         System.out.println("Iniciando a migração...");
                     try (var liquibase = new Liquibase(
-                        "/db/changelog/db.changelog-master.yml",
+                        "db/changelog/db.changelog-master.yml",
                         new ClassLoaderResourceAccessor(),
                         jdbcconnection
                     )) {

@@ -1,6 +1,8 @@
 package com.boardtarefas.BoardTarefas;
 
 import com.boardtarefas.BoardTarefas.persistence.migration.MigrationStrategy;
+import com.boardtarefas.BoardTarefas.ui.MainMenu;
+
 import static com.boardtarefas.BoardTarefas.persistence.config.ConnectionConfig.getConnection;
 
 import java.sql.SQLException;
@@ -11,5 +13,7 @@ public class Main {
         try(var connection = getConnection()){
             System.out.println("Conectado ao DB");
             new MigrationStrategy(connection).executeMigration();
-        }    }
+        }    
+        new MainMenu().execute();
+    }
 }

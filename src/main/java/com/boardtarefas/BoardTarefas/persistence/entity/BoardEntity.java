@@ -8,9 +8,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import com.boardtarefas.BoardTarefas.persistence.entity.BoardColumnKindEnum;
-
-
 @Data
 public class BoardEntity {
     private Long id;
