@@ -41,18 +41,18 @@ public class MainMenu {
         System.out.println("Informe o nome do Board:");
         entity.setName(scanner.next());
 
-        System.out.println("Digite a quantidade de colunas do Board: ");
+        System.out.println("Digite a quantidade adicionais do seu Board. Digite 0 e serão adicionadas apenas as colunas Inicial, Final e Cancelada:");
         var additionalColumns = scanner.nextInt();
 
         List<BoardColumnEntity> columns = new ArrayList<>();
 
-        System.out.println("Informe o nome da coluna inicial do Board: ");
+        System.out.println("Informe o nome da coluna de tarefas iniciais do Board: ");
         var initialColumnName = scanner.next();
         var initialColumn = createColumn(initialColumnName, BoardColumnKindEnum.INITIAL, 0);
         columns.add(initialColumn);
 
         for (int i = 0; i < additionalColumns; i++) {
-            System.out.println("Informe o nome da coluna de tarefas pendentes do board");
+            System.out.println("Informe o nome da coluna adicional do Board: ");
             var pendingColumnName = scanner.next();
             var pendingColumn =    createColumn(pendingColumnName, BoardColumnKindEnum.PENDING, i + 1);
             columns.add(pendingColumn);

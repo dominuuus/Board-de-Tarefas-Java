@@ -1,15 +1,15 @@
-abr. 06, 2025 9:05:19 PM liquibase.changelog
+abr. 06, 2025 9:22:01 PM liquibase.changelog
 INFORMA합ES: Reading resource: db/changelog/migrations/db.changelog-202504052041.sql
-abr. 06, 2025 9:05:19 PM liquibase.changelog
+abr. 06, 2025 9:22:01 PM liquibase.changelog
 INFORMA합ES: Reading resource: db/changelog/migrations/db.changelog-202504052100.sql
-abr. 06, 2025 9:05:19 PM liquibase.changelog
+abr. 06, 2025 9:22:01 PM liquibase.changelog
 INFORMA합ES: Reading resource: db/changelog/migrations/db.changelog-202504052130.sql
-abr. 06, 2025 9:05:19 PM liquibase.changelog
+abr. 06, 2025 9:22:01 PM liquibase.changelog
 INFORMA합ES: Reading resource: db/changelog/migrations/db.changelog-202504052150.sql
-abr. 06, 2025 9:05:20 PM liquibase.changelog
+abr. 06, 2025 9:22:01 PM liquibase.changelog
 INFORMA합ES: Reading from board.databasechangelog
 Database is up to date, no changesets to execute
-abr. 06, 2025 9:05:20 PM liquibase.changelog
+abr. 06, 2025 9:22:01 PM liquibase.changelog
 INFORMA합ES: Reading from board.databasechangelog
 
 UPDATE SUMMARY
@@ -19,19 +19,19 @@ Filtered out:                 0
 -------------------------------
 Total change sets:            4
 
-abr. 06, 2025 9:05:20 PM liquibase.util
+abr. 06, 2025 9:22:01 PM liquibase.util
 INFORMA합ES: UPDATE SUMMARY
-abr. 06, 2025 9:05:20 PM liquibase.util
+abr. 06, 2025 9:22:01 PM liquibase.util
 INFORMA합ES: Run:                          0
-abr. 06, 2025 9:05:20 PM liquibase.util
+abr. 06, 2025 9:22:01 PM liquibase.util
 INFORMA합ES: Previously run:               4
-abr. 06, 2025 9:05:20 PM liquibase.util
+abr. 06, 2025 9:22:01 PM liquibase.util
 INFORMA합ES: Filtered out:                 0
-abr. 06, 2025 9:05:20 PM liquibase.util
+abr. 06, 2025 9:22:01 PM liquibase.util
 INFORMA합ES: -------------------------------
-abr. 06, 2025 9:05:20 PM liquibase.util
+abr. 06, 2025 9:22:01 PM liquibase.util
 INFORMA합ES: Total change sets:            4
-abr. 06, 2025 9:05:20 PM liquibase.util
+abr. 06, 2025 9:22:01 PM liquibase.util
 INFORMA합ES: Update summary generated
-abr. 06, 2025 9:05:20 PM liquibase.command
+abr. 06, 2025 9:22:01 PM liquibase.command
 INFORMA합ES: Command execution complete
