@@ -19,7 +19,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class BoardMenu {
 
-    private final Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+    private final Scanner scanner = new Scanner(System.in);
 
     private final BoardEntity entity;
 
@@ -169,11 +169,12 @@ public class BoardMenu {
             selectedColumnId = scanner.nextLong();
         }
 
-        try (var connection = getConnection()) {
+        try(var connection = getConnection()){
             var column = new BoardColumnQueryService(connection).findById(selectedColumnId);
             column.ifPresent(co -> {
-                System.out.printf("Coluna [%s] tipo: [%s] tem %s cards \n", co.getName(), co.getKind());
-                co.getCards().forEach(card -> System.out.printf("Card [%s] - %s\n Descrição: %s", card.getId(), card.getTitle(), card.getDescription()));
+                System.out.printf("Coluna %s tipo %s\n", co.getName(), co.getKind());
+                co.getCards().forEach(ca -> System.out.printf("Card %s - %s\nDescrição: %s",
+                        ca.getId(), ca.getTitle(), ca.getDescription()));
             });
         }
     }

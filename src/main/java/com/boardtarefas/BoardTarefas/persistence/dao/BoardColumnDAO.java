@@ -62,14 +62,17 @@ public class BoardColumnDAO {
 
     public List<BoardColumnDTO> findBoardByIdDetails(final Long boardId) throws SQLException {
         List<BoardColumnDTO> dtos = new ArrayList<>();
-        var sql = """
-                SELECT  bc.id, 
-                        bc.name, 
-                        bc.kind, 
-                        (SELECT COUNT (c.id) FROM CARDS c WHERE c.board_column_id = bc.id) cards_amount
-                        FROM BOARD_COLUMNS bc
-                        WHERE bc.board_id = ?
-                        ORDER BY `order` ASC;
+        var sql =
+                """
+                SELECT bc.id,
+                       bc.name,
+                       bc.kind,
+                       (SELECT COUNT(c.id)
+                               FROM CARDS c
+                              WHERE c.board_column_id = bc.id) cards_amount
+                  FROM BOARD_COLUMNS bc
+                 WHERE board_id = ?
+                 ORDER BY `order`;
                 """;
         try(var statement = connection.prepareStatement(sql)) {
             statement.setLong(1, boardId);
@@ -91,15 +94,17 @@ public class BoardColumnDAO {
     }
 
     public Optional<BoardColumnEntity> findById(final Long boardId) throws SQLException {
-        var sql = """
-                SELECT  bc.name, 
-                        bc.kind,
-                        c.id,
-                        c.title,
-                        c.description
-                        FROM BOARD_COLUMNS bc
-                        LEFT JOIN CARDS c ON c.board_column_id = bc.id
-                        WHERE bc.id = ?;
+        var sql =
+                """
+                SELECT bc.name,
+                    bc.kind,
+                    c.id,
+                    c.title,
+                    c.description
+                FROM BOARD_COLUMNS bc
+                LEFT JOIN CARDS c
+                    ON c.board_column_id = bc.id
+                WHERE bc.id = ?;
                 """;
         try(var statement = connection.prepareStatement(sql)) {
             statement.setLong(1, boardId);

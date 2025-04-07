@@ -1,16 +1,15 @@
-Iniciando a migração...
-abr. 06, 2025 12:51:28 PM liquibase.changelog
+abr. 06, 2025 9:05:19 PM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202504052041.sql
-abr. 06, 2025 12:51:28 PM liquibase.changelog
+abr. 06, 2025 9:05:19 PM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202504052100.sql
-abr. 06, 2025 12:51:28 PM liquibase.changelog
+abr. 06, 2025 9:05:19 PM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202504052130.sql
-abr. 06, 2025 12:51:28 PM liquibase.changelog
+abr. 06, 2025 9:05:19 PM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202504052150.sql
-abr. 06, 2025 12:51:28 PM liquibase.changelog
+abr. 06, 2025 9:05:20 PM liquibase.changelog
 INFORMAÇÕES: Reading from board.databasechangelog
 Database is up to date, no changesets to execute
-abr. 06, 2025 12:51:28 PM liquibase.changelog
+abr. 06, 2025 9:05:20 PM liquibase.changelog
 INFORMAÇÕES: Reading from board.databasechangelog
 
 UPDATE SUMMARY
@@ -20,20 +19,19 @@ Filtered out:                 0
 -------------------------------
 Total change sets:            4
 
-abr. 06, 2025 12:51:28 PM liquibase.util
+abr. 06, 2025 9:05:20 PM liquibase.util
 INFORMAÇÕES: UPDATE SUMMARY
-abr. 06, 2025 12:51:28 PM liquibase.util
+abr. 06, 2025 9:05:20 PM liquibase.util
 INFORMAÇÕES: Run:                          0
-abr. 06, 2025 12:51:28 PM liquibase.util
+abr. 06, 2025 9:05:20 PM liquibase.util
 INFORMAÇÕES: Previously run:               4
-abr. 06, 2025 12:51:28 PM liquibase.util
+abr. 06, 2025 9:05:20 PM liquibase.util
 INFORMAÇÕES: Filtered out:                 0
-abr. 06, 2025 12:51:28 PM liquibase.util
+abr. 06, 2025 9:05:20 PM liquibase.util
 INFORMAÇÕES: -------------------------------
-abr. 06, 2025 12:51:28 PM liquibase.util
+abr. 06, 2025 9:05:20 PM liquibase.util
 INFORMAÇÕES: Total change sets:            4
-abr. 06, 2025 12:51:28 PM liquibase.util
+abr. 06, 2025 9:05:20 PM liquibase.util
 INFORMAÇÕES: Update summary generated
-abr. 06, 2025 12:51:28 PM liquibase.command
+abr. 06, 2025 9:05:20 PM liquibase.command
 INFORMAÇÕES: Command execution complete
-Migração concluída com sucessso

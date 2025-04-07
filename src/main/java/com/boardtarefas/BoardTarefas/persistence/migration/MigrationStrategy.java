@@ -37,15 +37,13 @@ public class MigrationStrategy {
                     var connection = getConnection();
                     var jdbcconnection = new JdbcConnection(connection);
                     ) {
-                        System.out.println("Iniciando a migração...");
                     try (var liquibase = new Liquibase(
                         "db/changelog/db.changelog-master.yml",
                         new ClassLoaderResourceAccessor(),
                         jdbcconnection
                     )) {
                         liquibase.update();
-                        System.out.println("Migração concluída com sucessso");
-                    }
+                   }
                 } catch (SQLException | LiquibaseException e) {
                     System.err.println("Erro ao executar a migração " + e.getMessage());
                     e.printStackTrace();

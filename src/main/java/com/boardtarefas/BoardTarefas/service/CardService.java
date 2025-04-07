@@ -68,7 +68,7 @@ public class CardService {
             var dao = new CardDAO(connection);
             var optional = dao.findById(cardId);
             var dto = optional.orElseThrow(
-                () -> new EntityNotFoundException("null card não encontrado com o id %s".formatted(cardId))
+                () -> new EntityNotFoundException("Nenhum card encontrado com o id %s".formatted(cardId))
             );
             if (dto.blocked()) {
                 var message = "Card bloqueado, desbloqueie antes de cancelar".formatted(cardId);
@@ -77,7 +77,7 @@ public class CardService {
             var currentColumn = boardColumnsInfo.stream()
                 .filter(bc -> bc.id().equals(dto.columnId()))
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException("null card já pertence a outro board"));
+                .orElseThrow(() -> new IllegalStateException("Card já pertence a outro board"));
             if (currentColumn.kind().equals(FINAL)) {
                 throw new CardBlockedException("O card já foi finalizado, não pode ser cancelado");
             }
@@ -99,7 +99,7 @@ public class CardService {
             var dao = new CardDAO(connection);
             var optional = dao.findById(id);
             var dto = optional.orElseThrow(
-                () -> new EntityNotFoundException("null card não encontrado com o id %s".formatted(id))
+                () -> new EntityNotFoundException("Card não encontrado com o id %s".formatted(id))
             );
             if (dto.blocked()) {
                 var message = "Card bloqueado, desbloqueie antes de cancelar".formatted(id);
